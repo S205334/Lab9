@@ -5,13 +5,15 @@
 package it.polito.tdp.porto.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.porto.model.Creator;
 import it.polito.tdp.porto.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TextArea;
 
 public class PortoController {
 
@@ -23,14 +25,14 @@ public class PortoController {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-    @FXML // fx:id="txtResult"
-    private HBox txtResult; // Value injected by FXMLLoader
+    @FXML
+    private TextArea txtResult;
 
     @FXML // fx:id="choisAutoreA"
-    private ChoiceBox<?> choisAutoreA; // Value injected by FXMLLoader
+    private ChoiceBox<Creator> choisAutoreA; // Value injected by FXMLLoader
 
     @FXML // fx:id="choisAutoreB"
-    private ChoiceBox<?> choisAutoreB; // Value injected by FXMLLoader
+    private ChoiceBox<Creator> choisAutoreB; // Value injected by FXMLLoader
 
     @FXML
     void viewCluster(ActionEvent event) {
@@ -55,8 +57,14 @@ public class PortoController {
 
     }
 
-	public void setModel(Model model) {
+	public void setModel(Model m) {
 		// TODO Auto-generated method stub
-		this.model = model;
+		this.model = m;
+		model.creaGrafo();
+		List<Creator> creators = model.getCreatorList();
+		
+		choisAutoreA.getItems().addAll(creators);
+		choisAutoreB.getItems().addAll(creators);
+		
 	}
 }

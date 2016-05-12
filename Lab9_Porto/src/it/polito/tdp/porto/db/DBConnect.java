@@ -8,7 +8,7 @@ public class DBConnect {
 
 	private static final String jdbcURL = "jdbc:mysql://localhost/metroparis?user=root" ;
 	
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		Connection conn;
 		
 		try {
@@ -18,7 +18,7 @@ public class DBConnect {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new RuntimeException("Errore connession", e);
+			throw new RuntimeException("Errore connessione", e);
 		}
 	}
 	
