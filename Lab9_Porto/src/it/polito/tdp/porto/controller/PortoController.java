@@ -6,6 +6,8 @@ package it.polito.tdp.porto.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.porto.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -13,6 +15,8 @@ import javafx.scene.layout.HBox;
 
 public class PortoController {
 
+	private Model model;
+	
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -50,4 +54,9 @@ public class PortoController {
         assert choisAutoreB != null : "fx:id=\"choisAutoreB\" was not injected: check your FXML file 'Porto.fxml'.";
 
     }
+
+	public void setModel(Model model) {
+		// TODO Auto-generated method stub
+		this.model = model;
+	}
 }
