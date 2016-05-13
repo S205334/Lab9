@@ -13,6 +13,10 @@ public class Creator {
 		this.givenName = givenName;
 	}
 
+	public Creator(int idCreator) {
+		this.idCreator = idCreator;
+	}
+
 	public int getIdCreator() {
 		return idCreator;
 	}
@@ -39,10 +43,7 @@ public class Creator {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idCreator;
-		return result;
+		return ((Integer) idCreator).hashCode();
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class Creator {
 
 	@Override
 	public String toString() {
-		return "Creator [idCreator=" + idCreator + ", familyName=" + familyName + ", givenName=" + givenName + "]";
+		return String.format("%s %s", familyName, givenName);
 	}
 	
 	

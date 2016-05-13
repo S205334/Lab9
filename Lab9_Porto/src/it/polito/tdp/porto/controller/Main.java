@@ -15,11 +15,10 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Porto.fxml"));
 			BorderPane root = (BorderPane)loader.load();
 			
-			PortoController controller = new PortoController();
+			PortoController controller = loader.getController();
 			Model model = new Model();
 			
-			controller.setModel(model);
-			
+			controller.setModel(model);	
 			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -16,7 +16,8 @@ public class PortoDAO {
 	public List<Creator> getCreator() {
 		
 		String sql = "SELECT* "
-				+ "FROM creator";
+				+ "FROM creator "
+				+ "ORDER BY family_name";
 		List<Creator> creators = new ArrayList<>();
 				
 		try {
@@ -29,6 +30,9 @@ public class PortoDAO {
 										rs.getString(2),
 										rs.getString(3)));
 			}
+			
+			st.close();
+			conn.close();
 			
 			return creators;
 		} catch (SQLException e) {
@@ -49,10 +53,13 @@ public class PortoDAO {
 			ResultSet rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				articles.add(new Article(rs.getInt(1),
-										rs.getInt(2),
-										rs.getString(3)));
+				articles.add(new Article(rs.getInt("eprintid"),
+										rs.getInt("year"),
+										rs.getString("title")));
 			}
+			
+			st.close();
+			conn.close();
 			
 			return articles;
 		} catch (SQLException e) {
@@ -65,7 +72,7 @@ public class PortoDAO {
 		
 		String sql = "SELECT* "
 				+ "FROM authorship";
-		List<Authorship> authorships = new ArrayList<>();
+		List<Authorship> authorships = new ArrayList<Authorship>();
 				
 		try {
 			Connection conn = DBConnect.getConnection();
@@ -73,10 +80,14 @@ public class PortoDAO {
 			ResultSet rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				authorships.add(new Authorship(rs.getInt(1),
-										a.get(a.indexOf(rs.getInt(2))),
-										c.get(c.indexOf(rs.getInt(3)))));
+				
+				authorships.add(new Authorship(rs.getInt("id_authorship"),
+								a.get(a.indexOf(new Article(rs.getInt("eprintid")))),
+								c.get(c.indexOf(new Creator(rs.getInt("id_creator"))))));
 			}
+			
+			st.close();
+			conn.close();
 			
 			return authorships;
 		} catch (SQLException e) {

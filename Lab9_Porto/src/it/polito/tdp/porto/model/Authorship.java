@@ -1,5 +1,6 @@
 package it.polito.tdp.porto.model;
 
+
 public class Authorship {
 	
 	private int idAuthorship;

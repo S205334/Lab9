@@ -12,6 +12,9 @@ public class Article {
 		this.year = year;
 		this.title = title;
 	}
+	public Article(int eprintid) {
+		this.ePrintId = eprintid;
+	}
 	public int getEprintid() {
 		return ePrintId;
 	}
@@ -53,7 +56,7 @@ public class Article {
 	
 	@Override
 	public String toString() {
-		return "Article [ePrintId=" + ePrintId + ", year=" + year + ", title=" + title + "]";
+		return String.format("%-10d %4d %s", ePrintId, year, title);
 	}
 	
 	
